@@ -181,8 +181,6 @@ class PaypalPayment extends Payment implements PaymentInterface
 
         if (is_null($this->token)) {
             if ($method == 'v1/oauth2/token') {
-                $url = 'https://api.sandbox.paypal.com';
-
                 curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
                 curl_setopt($ch, CURLOPT_USERPWD, $this->getSetting('client_id') . ':' . $this->getSetting('client_secret'));
 
