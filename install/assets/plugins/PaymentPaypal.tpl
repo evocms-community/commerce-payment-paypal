@@ -5,10 +5,10 @@
  * PayPal payments processing
  *
  * @category    plugin
- * @version     0.1.0
+ * @version     0.1.1
  * @author      mnoskov
  * @internal    @events OnRegisterPayments,OnBeforeOrderSending,OnManagerBeforeOrderRender
- * @internal    @properties &title=Title;text; &client_id=Client ID;text; &client_secret=Client secret;text; &debug=Debug;list;Нет==0||Да==1;0
+ * @internal    @properties &title=Title;text; &client_id=Client ID;text; &client_secret=Client secret;text; &debug=Debug;list;No==0||Yes==1;1 &sandbox=Sandbox;list;No==0||Yes==1;1
  * @internal    @modx_category Commerce
  * @internal    @installset base
 */

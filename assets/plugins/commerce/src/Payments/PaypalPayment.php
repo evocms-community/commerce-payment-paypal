@@ -26,8 +26,6 @@ class PaypalPayment extends Payment implements PaymentInterface
 
     public function getPaymentLink()
     {
-        $debug = !empty($this->getSetting('debug'));
-
         $processor = $this->modx->commerce->loadProcessor();
         $order     = $processor->getOrder();
         $currency  = ci()->currency->getCurrency($order['currency']);
@@ -170,8 +168,7 @@ class PaypalPayment extends Payment implements PaymentInterface
 
     protected function request($method, $data = [], $curlParams = [], $headers = [])
     {
-        $debug = $this->getSetting('debug');
-        $url = $debug ? 'https://api.sandbox.paypal.com' : 'https://api.paypal.com';
+        $url = $this->getSetting('sandbox') ? 'https://api.sandbox.paypal.com' : 'https://api.paypal.com';
 
         $headers = [
             'Content-Type: application/json',
@@ -217,7 +214,7 @@ class PaypalPayment extends Payment implements PaymentInterface
 
         $response = curl_exec($ch);
 
-        if ($debug) {
+        if ($this->getSetting('debug')) {
             $this->modx->logEvent(0, 1, "URL: <pre>$url</pre>\n\Headers: <pre>" . htmlentities(print_r($headers, true)) . "</pre>\n\nRequest data: <pre>" . htmlentities(print_r($data, true)) . "</pre>\n\nResponse data: <pre>" . htmlentities(print_r($response, true)) . "</pre>" . (curl_errno($ch) ? "\n\nError: <pre>" . htmlentities(curl_error($ch)) . "</pre>" : ''), 'Commerce PayPal Payment Debug: request');
         }
 
