@@ -121,7 +121,7 @@ class PaypalPayment extends Payment implements PaymentInterface
         }
 
         try {
-            $response = $this->request('v2/checkout/orders/' . $_GET['token'] . '/capture');
+            $response = $this->request('v2/checkout/orders/' . $_GET['token'] . '/capture', ['intent'=>'CAPTURE']);
         } catch (Exception $e) {
             $this->modx->logEvent(0, 3, 'Order status request failed: ' . $e->getMessage(), 'Commerce PayPal Payment');
             return false;
