@@ -170,9 +170,7 @@ class PaypalPayment extends Payment implements PaymentInterface
     {
         $url = $this->getSetting('sandbox') ? 'https://api.sandbox.paypal.com' : 'https://api.paypal.com';
 
-        $headers = [
-            'Content-Type: application/json',
-        ];
+        $headers[] = 'Content-Type: application/json';
 
         $ch = curl_init();
 
